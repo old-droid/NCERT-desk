@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5" />
+  <meta name="description" content="NCERT Lab — a privacy-first interactive study desk." />
+  <title>NCERT Lab — Turn the page. Bend the rule.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="rail">
+      <div class="brand-mark" aria-label="NCERT Lab"><span>✦</span><strong>NCERT<br/>LAB</strong></div>
+      <div class="rail-rule"></div>
+      <nav class="rail-nav" aria-label="Primary navigation">
+        <button class="nav-btn active" data-view="hub"><span>▦</span><em>Chapters</em></button>
+        <button class="nav-btn" data-view="progress"><span>↗</span><em>Progress</em></button>
+        <button class="nav-btn" data-view="settings"><span>⚙</span><em>Settings</em></button>
+      </nav>
+      <div class="rail-bottom"><span class="status-dot"></span><small>LOCAL<br/>FIRST</small></div>
+    </aside>
+
+    <main class="main-canvas">
+      <header class="topbar">
+        <div><p class="eyebrow">PERSONAL STUDY DESK / <span id="todayLabel">TODAY</span></p><h1 id="pageTitle">Chapter hub</h1></div>
+        <div class="top-actions"><button id="themeToggle" class="icon-btn" title="Toggle dark mode">☾</button><div class="xp-pill"><span>✦</span><strong id="xpValue">0 XP</strong><small id="streakValue">0 day streak</small></div></div>
+      </header>
+
+      <section id="view-hub" class="view active-view">
+        <div class="hero-strip">
+          <div><span class="tag tag-indigo">READY TO EXPLORE</span><h2>Turn the page.<br/><span>Bend the rule.</span></h2><p>Upload an NCERT book, or start with the sample desk. Every card is a small unlock.</p></div>
+          <div class="hero-doodle" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><span>∑</span></div>
+        </div>
+        <div class="setup-grid">
+          <section class="panel setup-panel"><div class="panel-head"><div><p class="eyebrow">01 / SETUP</p><h3>Choose your desk</h3></div><span class="panel-icon">⌘</span></div>
+            <div class="field-row"><label>Grade<select id="gradeSelect"><option>Class 1</option><option>Class 2</option><option>Class 3</option><option>Class 4</option><option>Class 5</option><option selected>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option></select></label><label>Subject<select id="subjectSelect"><option>Mathematics</option><option>Science</option><option>Physics</option><option>Chemistry</option><option>Biology</option></select></label></div>
+            <div class="dropzone-row"><label class="dropzone"><input type="file" accept="application/pdf" data-book="part1"/><span class="drop-icon">＋</span><strong>Textbook Part 1</strong><small>PDF · optional</small></label><label class="dropzone"><input type="file" accept="application/pdf" data-book="part2"/><span class="drop-icon">＋</span><strong>Textbook Part 2</strong><small>PDF · optional</small></label><label class="dropzone"><input type="file" accept="application/pdf" data-book="solutions"/><span class="drop-icon">＋</span><strong>Solutions / Exemplar</strong><small>PDF · optional</small></label></div>
+            <div id="manualRange" class="manual-range" hidden><strong>TOC NOT FOUND</strong><span>Set a page range for a chapter and add it to your hub.</span><div><input id="manualTitle" placeholder="Chapter title"/><input id="manualStart" type="number" min="1" value="1"/><input id="manualEnd" type="number" min="1" value="5"/><button id="addManualRange" class="btn">Add range</button></div></div><div class="setup-foot"><p id="uploadStatus"><span class="status-dot"></span> Demo desk is ready · add at least one textbook PDF to launch your own desk.</p><button id="launchDesk" class="btn btn-primary" disabled>Launch desk <span>→</span></button></div>
+          </section>
+          <aside class="panel quick-panel"><p class="eyebrow">YOUR SIGNAL</p><div class="signal-number" id="cardsDone">0</div><p>cards completed</p><div class="mini-stat"><span>Current streak</span><strong id="miniStreak">0 days</strong></div><div class="mini-stat"><span>Weak topics</span><strong id="weakTopics">0</strong></div><div class="quote">“The important thing is to never stop questioning.”<small>— Albert Einstein</small></div></aside>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">02 / CHAPTERS</p><h3>Pick a chapter</h3></div><div class="filter-pills"><button class="filter-pill active">All</button><button class="filter-pill">In progress</button><button class="filter-pill">New</button></div></div>
+        <div id="chapterGrid" class="chapter-grid"></div>
+      </section>
+
+      <section id="view-lesson" class="view"><div id="lessonMount"></div></section>
+      <section id="view-progress" class="view"><div id="progressMount"></div></section>
+      <section id="view-settings" class="view"><div id="settingsMount"></div></section>
+    </main>
+
+    <aside class="utility-panel"><div class="utility-header"><p class="eyebrow">SESSION</p><span class="live-pill"><i></i> LIVE</span></div><div class="session-progress"><div class="ring"><span id="sessionPercent">0%</span></div><div><strong>Good momentum.</strong><p>Keep one card moving today.</p></div></div><div class="utility-divider"></div><div class="next-up"><p class="eyebrow">NEXT UP</p><div class="next-card"><span class="next-number">01</span><div><strong id="nextChapter">Lines and Angles</strong><small>Concept card · 8 min</small></div><button id="nextOpen" aria-label="Open next chapter">→</button></div></div><div class="utility-divider"></div><div class="tip-card"><span>✦</span><div><strong>Study tip</strong><p>Ask “why?” before asking “what’s the answer?”</p></div></div><footer><span>v1.0 / STATIC BUILD</span><span>⌁ NO TRACKING</span></footer></aside>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.min.mjs" type="module"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
