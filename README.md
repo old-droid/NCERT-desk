@@ -1,6 +1,6 @@
-# NCERT Lab
+# NCERT Desk
 
-NCERT Lab is a static, privacy-first NCERT learning desk. It runs in the browser, stores books and progress locally, and has no application server.
+NCERT Desk is a static, privacy-first NCERT learning desk. It runs in the browser, stores books and progress locally, and has no application server.
 
 ## Run locally
 
@@ -18,9 +18,7 @@ The demo desk works immediately with a sample Lines and Angles lesson. Choose a 
 
 For AI-generated lessons and twisted tests, open Settings & data and save your own Google Gemini API key. The key is stored in `localStorage`; it is not sent to NCERT Lab infrastructure. Gemini calls are made directly from the browser. If no key is saved, the deterministic sample lesson and test remain available.
 
-## GitHub Pages
 
-Upload the project files to a repository and enable GitHub Pages from the repository's main branch and root folder. The app uses relative paths, so it works from a project subpath. Keep `index.html`, `styles.css`, the JavaScript modules, `manus-routes.json`, `public/manus-routes.json`, and `app.config.ts` together; the two route files are identical so both Preview and the static publication output expose `/manus-routes.json`.
 
 ## Privacy model
 
